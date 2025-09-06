@@ -123,7 +123,7 @@ function submitOrder(e) {
     timestamp: new Date().toISOString()
   };
 
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbypiO76ogN3d_W6SGLDQcbM_0PSojWbclpEXk5DPcPPWsl5OTyHeNE7pigM_ZzyKIBCsw/exec"; 
+  const WEB_APP_URL = "https://bitter-disk-2029.romi-modukuri.workers.dev/"; 
 
   fetch(WEB_APP_URL, {
     method: "POST",
