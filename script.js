@@ -7,7 +7,7 @@ let products = [];
 
 async function loadProducts() {
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbwL3gpx971llWL4YUmA_wj8C_1m2etb6qh3gT1mxhFCFApr0gGR3_ZY6NiqJdG9kjZs1w/exec");
+    const response = await fetch("https://bitter-disk-2029.romi-modukuri.workers.dev/");
     products = await response.json();
     renderProducts();
   } catch (err) {
@@ -15,6 +15,7 @@ async function loadProducts() {
     alert("Failed to load products.");
   }
 }
+
 
 function renderProducts() {
   const container = document.getElementById("products-container");
