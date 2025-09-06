@@ -1,8 +1,8 @@
 let cart = [];
 let total = 0;
-let products = []; // Will be loaded from Google Sheets
+let products = []; 
 
-// Fetch products from Google Sheets
+
 async function loadProducts() {
   try {
     const response = await fetch("https://script.google.com/macros/s/AKfycbwjRzo6KXFpka8qG7CsyW_szPS0aZOv8BTBTDbReGOtdYekKjXHw4eWIJIF__qc54CU8A/exec"); // Replace with your Products sheet web app URL
@@ -14,10 +14,10 @@ async function loadProducts() {
   }
 }
 
-// Render products to page
+
 function renderProducts() {
   const container = document.getElementById("products-container");
-  container.innerHTML = ""; // Clear container first
+  container.innerHTML = ""; 
   products.forEach((p) => {
     const div = document.createElement("div");
     div.className = "product";
@@ -33,7 +33,7 @@ function renderProducts() {
   });
 }
 
-// Show shop view
+
 function showShop() {
   const homepage = document.getElementById("homepage");
   const shop = document.getElementById("shop");
@@ -45,7 +45,7 @@ function showShop() {
   }, 400);
 }
 
-// Back to home
+
 document.getElementById("home-button").addEventListener("click", () => {
   const shop = document.getElementById("shop");
   const homepage = document.getElementById("homepage");
@@ -57,7 +57,7 @@ document.getElementById("home-button").addEventListener("click", () => {
   }, 400);
 });
 
-// Cart sidebar controls
+
 const cartButton = document.getElementById("cart-button");
 const checkout = document.getElementById("checkout");
 const closeCart = document.getElementById("close-cart");
@@ -65,7 +65,7 @@ const closeCart = document.getElementById("close-cart");
 cartButton.addEventListener("click", () => { updateCartUI(); checkout.classList.add("active"); });
 closeCart.addEventListener("click", () => { checkout.classList.remove("active"); });
 
-// Cart functions
+
 function addToCart(name, price) {
   let item = cart.find(i => i.name === name);
   if (item) { item.quantity++; } else { cart.push({ name, price, quantity: 1 }); }
@@ -95,7 +95,7 @@ function increaseQty(i) { cart[i].quantity++; updateCartUI(); }
 function decreaseQty(i) { if (cart[i].quantity > 1) { cart[i].quantity--; } else { cart.splice(i, 1); } updateCartUI(); }
 function removeFromCart(i) { cart.splice(i, 1); updateCartUI(); }
 
-// Keep submitOrder exactly the same
+
 function submitOrder(e) {
   e.preventDefault();
 
@@ -142,7 +142,7 @@ function submitOrder(e) {
     });
 }
 
-// Overlay buttons
+
 document.getElementById("about-button").addEventListener("click", () => openOverlay("about-overlay"));
 document.getElementById("contact-button").addEventListener("click", () => openOverlay("contact-overlay"));
 document.querySelectorAll(".close-overlay").forEach(btn => {
@@ -152,5 +152,5 @@ document.querySelectorAll(".close-overlay").forEach(btn => {
 function openOverlay(id) { document.getElementById(id).classList.add("active"); }
 function closeOverlay(id) { document.getElementById(id).classList.remove("active"); }
 
-// Load products dynamically
+
 loadProducts();
