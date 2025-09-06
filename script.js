@@ -7,7 +7,7 @@ let products = [];
 
 async function loadProducts() {
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbzZldPaYRWJLOD83pU4cWkP3ULbBNTpu_pdDPSTu8kMosnDEEoj1-b46HcNfwTo9OJiBw/exec");
+    const response = await fetch("https://script.google.com/macros/s/AKfycbwL3gpx971llWL4YUmA_wj8C_1m2etb6qh3gT1mxhFCFApr0gGR3_ZY6NiqJdG9kjZs1w/exec");
     products = await response.json();
     renderProducts();
   } catch (err) {
@@ -122,7 +122,7 @@ function submitOrder(e) {
     timestamp: new Date().toISOString()
   };
 
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxdr8_jZtT2bTmL797vr5H67q8OOU3vX4OBUDBcDnJJi9WdjdkxzYmhZtbBJeNzNiJnNA/exec"; 
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbypiO76ogN3d_W6SGLDQcbM_0PSojWbclpEXk5DPcPPWsl5OTyHeNE7pigM_ZzyKIBCsw/exec"; 
 
   fetch(WEB_APP_URL, {
     method: "POST",
