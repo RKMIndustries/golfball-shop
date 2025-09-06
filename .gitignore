@@ -1,0 +1,25 @@
+# Node modules (if you ever use npm)
+node_modules/
+
+# Logs
+*.log
+
+# OS system files
+.DS_Store
+Thumbs.db
+
+# VS Code settings
+.vscode/
+
+# Local environment files
+.env
+
+# Temporary files
+*.tmp
+*.swp
+
+# Mac-specific metadata
+*.DS_Store
+
+# Ignore large images if you prefer to host them elsewhere
+# images/
