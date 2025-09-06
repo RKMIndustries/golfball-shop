@@ -1,3 +1,5 @@
+//version 1.1.2
+
 let cart = [];
 let total = 0;
 let products = []; 
@@ -5,15 +7,14 @@ let products = [];
 
 async function loadProducts() {
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbzZ_vX8wTZ1JH5LShUncaPTfYOA4p8XqppGuDXGW_OhW_bRuT4atWS00cCtBiLd6EFJ_A/exec");
+    const response = await fetch("https://script.google.com/macros/s/AKfycbzZldPaYRWJLOD83pU4cWkP3ULbBNTpu_pdDPSTu8kMosnDEEoj1-b46HcNfwTo9OJiBw/exec");
     products = await response.json();
     renderProducts();
   } catch (err) {
     console.error("Error loading products:", err);
-    alert("Failed to load products from the spreadsheet.");
+    alert("Failed to load products.");
   }
 }
-
 
 function renderProducts() {
   const container = document.getElementById("products-container");
@@ -121,7 +122,7 @@ function submitOrder(e) {
     timestamp: new Date().toISOString()
   };
 
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxH-PI2ukR261ogk8wRU6tOkIgybTeudFQkmKIviFzncqWwRg_EMAHBI1J2Gl_UQDeB-w/exec"; 
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxdr8_jZtT2bTmL797vr5H67q8OOU3vX4OBUDBcDnJJi9WdjdkxzYmhZtbBJeNzNiJnNA/exec"; 
 
   fetch(WEB_APP_URL, {
     method: "POST",
