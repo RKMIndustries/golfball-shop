@@ -6,6 +6,13 @@ let products = [];
 
 
 async function loadProducts() {
+  const loadingDots = document.getElementById("loading-dots");
+  let dotCount = 0;
+  const interval = setInterval(() => {
+    dotCount = (dotCount + 1) % 4;
+    loadingDots.innerText = '.'.repeat(dotCount);
+  }, 500);
+
   try {
     const response = await fetch("https://bitter-disk-2029.romi-modukuri.workers.dev/");
     products = await response.json();
@@ -13,8 +20,11 @@ async function loadProducts() {
   } catch (err) {
     console.error("Error loading products:", err);
     alert("Failed to load products.");
+  } finally {
+    clearInterval(interval);
   }
 }
+
 
 
 function renderProducts() {
@@ -106,8 +116,12 @@ function submitOrder(e) {
   const hole = document.getElementById("hole-number").value;
   const payment = document.getElementById("payment-method").value;
 
+  const submitBtn = document.querySelector("#checkout-form button[type='submit']");
+  const originalText = submitBtn.innerHTML;
+
   if (cart.length === 0) {
-    alert("Your cart is empty!");
+    document.getElementById("order-error").innerText = "Your cart is empty!";
+    setTimeout(() => { document.getElementById("order-error").innerText = ""; }, 3000);
     return;
   }
 
@@ -125,31 +139,47 @@ function submitOrder(e) {
 
   const WEB_APP_URL = "https://bitter-disk-2029.romi-modukuri.workers.dev/"; 
 
+ 
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = `<div class="button-loading">
+    <span></span><span></span><span></span>
+  </div>`;
+
   fetch(WEB_APP_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(orderData)
   })
     .then(() => {
-      alert("Order sent successfully!");
       cart = [];
       total = 0;
       updateCartUI();
-      checkout.classList.remove("active");
+      
       document.getElementById("checkout-form").reset();
+
+      
+      submitBtn.innerHTML = "✅ Order Sent!";
+      setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 2500);
     })
     .catch(err => {
       console.error(err);
-      alert("Error sending order. Check console.");
+
+      document.getElementById("order-error").innerText = "Failed to place order.";
+      setTimeout(() => { document.getElementById("order-error").innerText = ""; }, 3000);
+      submitBtn.innerHTML = "❌ Error!";
+      submitBtn.classList.add("button-shake");
+
+      setTimeout(() => {
+        submitBtn.classList.remove("button-shake");
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 1500);
     });
 }
 
-
-document.getElementById("about-button").addEventListener("click", () => openOverlay("about-overlay"));
-document.getElementById("contact-button").addEventListener("click", () => openOverlay("contact-overlay"));
-document.querySelectorAll(".close-overlay").forEach(btn => {
-  btn.addEventListener("click", () => closeOverlay(btn.dataset.close + "-overlay"));
-});
 
 function openOverlay(id) { document.getElementById(id).classList.add("active"); }
 function closeOverlay(id) { document.getElementById(id).classList.remove("active"); }
