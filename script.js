@@ -9,7 +9,7 @@ async function loadProducts() {
   try {
     const response = await fetch("https://bitter-disk-2029.romi-modukuri.workers.dev/");
     products = await response.json();
-    renderProducts();
+    renderProducts(); 
   } catch (err) {
     console.error("Error loading products:", err);
     alert("Failed to load products.");
