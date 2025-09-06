@@ -13,7 +13,7 @@ body {
 }
 
 
-.fullscreen {
+.homepage, .fullscreen {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,10 +22,14 @@ body {
   background-image: url(images/LongviewAerial3.jpg);
   background-size: cover;
   background-position: center;
+  max-height: 100vh;
+  background-attachment: fixed;
   color: white;
   text-align: center;
   padding: 0 20px;
 }
+
+
 
 .fullscreen h1 {
   font-size: 2.5rem;
@@ -48,6 +52,9 @@ body {
   background: linear-gradient(to right, #56ab2f, #a8e063);
 }
 
+.shop-button {
+  margin-top: 20px;
+}
 
 .shop-container {
   display: none;
