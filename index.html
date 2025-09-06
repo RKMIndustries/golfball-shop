@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golf Balls Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <div id="homepage" class="fullscreen">
+    <h1>Welcome to Golf Balls</h1>
+    <p>Order premium golf balls right from the course. Scan the QR, add your order, and when you pass the stand, we’ll have your balls ready.</p>
+    <button onclick="showShop()">Shop Now</button>
+  </div>
+
+ <div id="shop" class="shop-container">
+  <header class="sticky-header">
+    <h1>Golf Balls</h1>
+    <nav>
+      <button id="home-button">🏠 Home</button>
+      <button id="about-button">ℹ️ About</button>
+      <button id="contact-button">📩 Contact</button>
+      <button id="cart-button">🛒 <span id="cart-count">0</span></button>
+    </nav>
+  </header>
+
+  <main>
+  
+    
+    <div class="products-background">
+      <h2 class="our-products">Our Products</h2>
+      <div class="products" id="products-container">
+      
+      </div>
+    </div>
+  </main>
+</div>
+
+
+  <div id="checkout">
+    <button id="close-cart">✖</button>
+    <h2>Your Order</h2>
+    <ul id="cart-items"></ul>
+    <p><strong>Total: $<span id="final-total">0.00</span></strong></p>
+
+    <h3>Checkout</h3>
+    <form id="checkout-form" onsubmit="submitOrder(event)">
+      <div class="form-group">
+        <label>Your Name:</label>
+        <input type="text" id="customer-name" required>
+      </div>
+      <div class="form-group">
+        <label>Email (optional for receipt):</label>
+        <input type="email" id="customer-email" placeholder="example@email.com">
+      </div>
+      <div class="form-group">
+        <label>Current Hole Number:</label>
+        <select id="hole-number" required>
+          <option value="">--Select Hole--</option>
+          <script>
+            for(let i=1;i<=18;i++){
+              document.write(`<option value="${i}">${i}</option>`);
+            }
+          </script>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Payment Method:</label>
+        <select id="payment-method" required>
+          <option value="">--Select--</option>
+          <option value="Apple Pay">Apple Pay</option>
+          <option value="Google Pay">Google Pay</option>
+          <option value="Cash">Cash</option>
+        </select>
+      </div>
+      <button type="submit">Place My Order</button>
+    </form>
+  </div>
+
+  
+  <div id="about-overlay" class="overlay">
+    <div class="overlay-content">
+      <h2>About Us</h2>
+      <p>We sell high-quality golf balls directly on the course. Never run out mid-game.</p>
+      <button class="close-overlay" data-close="about">Close</button>
+    </div>
+  </div>
+
+  
+  <div id="contact-overlay" class="overlay">
+    <div class="overlay-content">
+      <h2>Contact Us</h2>
+      <p>Email us at <strong>support@golfballs.com</strong> or ask at the stand.</p>
+      <button class="close-overlay" data-close="contact">Close</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Golf Balls. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
